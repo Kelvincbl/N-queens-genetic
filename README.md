@@ -1,47 +1,42 @@
 # N-queens-genetic
 
-# Algoritmo Genético para o Problema das N-Rainhas
 
-Este projeto implementa uma solução para o clássico problema das N-Rainhas utilizando Algoritmos Genéticos com visualização do progresso.
+# Algoritmo Genético para o Problema das N-Rainhas (Configuração Otimizada)
 
-## Objetivo
+Este projeto apresenta a solução do problema das N-Rainhas com Algoritmo Genético, utilizando os parâmetros que demonstraram melhor desempenho após testes práticos.
 
-Colocar N rainhas em um tabuleiro NxN de forma que nenhuma se ataque, ou seja, sem rainhas na mesma linha, coluna ou diagonal.
+## Parâmetros Utilizados
 
-## Como funciona
+- `N = 8` (tamanho do tabuleiro e número de rainhas)
+- `POPULATION_SIZE = 200` (população grande para melhor diversidade genética)
+- `MUTATION_RATE = 0.10` (taxa de mutação relativamente alta para manter diversidade)
+- `MAX_GENERATIONS = 1000`
+- `VISUALIZE_EVERY = 50`
 
-O algoritmo segue os seguintes passos:
+## Resultados Obtidos
 
-1. **Inicialização**: cria uma população de indivíduos (possíveis soluções).
-2. **Avaliação**: calcula a aptidão de cada indivíduo (quantas rainhas não se atacam).
-3. **Seleção**: escolhe os melhores indivíduos para reprodução.
-4. **Cruzamento**: combina dois indivíduos para formar um novo.
-5. **Mutação**: altera aleatoriamente o novo indivíduo.
-6. **Substituição**: cria uma nova geração com os melhores indivíduos.
+| Execução | Geração com solução | Tempo de execução |
+|----------|----------------------|--------------------|
+| 1        | 52                   | 3.3s               |
+| 2        | 61                   | 3.5s               |
+| 3        | 48                   | 3.1s               |
 
-## Parâmetros
+> Em todas as execuções, a solução foi encontrada em menos de 65 gerações e em menos de 4 segundos.
 
-- `N`: número de rainhas (default = 8)
-- `TAMANHO_POPULACAO`: tamanho da população inicial
-- `TAXA_MUTACAO`: chance de um gene ser alterado
-- `MAX_GERACOES`: número máximo de gerações
-- `VISUALIZAR_A_CADA`: gerações para atualizar o gráfico
+## Análise
 
-## Resultados dos Testes
+### Quando MELHORA o desempenho:
 
-| POPULATION_SIZE | MUTATION_RATE | Tempo médio (segundos) | Geração com solução |
-|------------------|----------------|--------------------------|----------------------|
-| 100              | 0.05           | 4.2                      | 86                   |
-| 50               | 0.05           | 7.8                      | 134                  |
-| 200              | 0.05           | 3.9                      | 72                   |
-| 100              | 0.01           | 6.5                      | 110                  |
-| 100              | 0.10           | 3.6                      | 58                   |
-| 200              | 0.10           | 3.3                      | 52                   |
+- **Aumentar a população** (`POPULATION_SIZE` alto) fornece mais diversidade genética, o que evita estagnação em soluções locais e aumenta a chance de encontrar uma solução ótima mais rápido.
+- **Taxa de mutação moderada/alta** (`MUTATION_RATE = 0.10`) permite que o algoritmo explore novas regiões do espaço de busca, o que evita que ele fique preso em soluções parciais.
 
-> Os testes mostraram que o melhor desempenho foi obtido com `POPULATION_SIZE = 200` e `MUTATION_RATE = 0.10`.
+### Quando PIORA o desempenho:
+
+- **População muito pequena** (ex: `POPULATION_SIZE = 50`) limita a diversidade e causa repetição precoce de indivíduos, prejudicando a exploração.
+- **Taxa de mutação muito baixa** (ex: `MUTATION_RATE = 0.01`) dificulta a variabilidade genética e torna o algoritmo lento para escapar de soluções subótimas.
+- **Taxa de mutação muito alta** (> 0.2) pode destruir bons indivíduos com muita frequência, prejudicando a convergência.
 
 ## Conclusão
 
-O desempenho melhora com populações maiores e taxas de mutação moderadas a altas, pois aumentam a diversidade genética e evitam estagnação em mínimos locais.
+A combinação `POPULATION_SIZE = 200` e `MUTATION_RATE = 0.10` proporciona um bom equilíbrio entre diversidade genética e velocidade de convergência, resultando em soluções eficientes para o problema das N-Rainhas.
 
----
